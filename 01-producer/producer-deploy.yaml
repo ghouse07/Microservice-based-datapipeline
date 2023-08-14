@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      containers:
+        - name: kafka-producer
+          image: phaneesh707/producer:2.3
+          command: ["/bin/sh"]
+          args: ["-c", "while true; do echo helllo; sleep 10;done"]
+          imagePullPolicy: Always
+
+
